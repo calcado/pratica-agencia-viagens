@@ -12,11 +12,12 @@ CREATE TABLE airports(
     acronym VARCHAR(3) NOT NULL
 );
 
-CREATE TABLE flights(
+CREATE TABLE fligthts(
     id SERIAL PRIMARY KEY,
-    "companyId" INTEGER FOREIGN KEY REFERENCES "companies"("id"),
-    "airportId" INTEGER FOREIGN KEY REFERENCES "airports"("id"),
+    "companyId" INTEGER REFERENCES "companies"("id"),
     acronym VARCHAR (3) NOT NULL,
+    departureAirport INTEGER NOT NULL REFERENCES "airports"("id"),
+    arrivalAirport INTEGER NOT NULL REFERENCES "airports"("id"),
     departure TIMESTAMP WITH TIMEZONE NOT NULL, 
     arrival TIMESTAMP WITH TIMEZONE NOT NULL 
 )
